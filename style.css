@@ -1,0 +1,205 @@
+:root {
+    --bg-overlay: rgba(255, 255, 255, 0.15);
+    --card-bg: rgba(255, 255, 255, 0.15);
+    --text-color: white;
+    --input-bg: rgba(255, 255, 255, 0.2);
+    --input-text: #d81414;
+    --btn-bg: linear-gradient(135deg, rgba(44, 62, 80, 0.9), rgba(52, 73, 94, 0.9));
+    --nav-bg: rgba(44, 62, 80, 0.8);
+    --link-color: rgb(212, 13, 13);
+    --glass-blur: blur(12px);
+}
+
+[data-theme="light"] {
+    --bg-overlay: rgba(255, 255, 255, 0.6);
+    --card-bg: rgba(255, 255, 255, 0.8);
+    --text-color: #2c3e50;
+    --input-bg: rgba(255, 255, 255, 0.9);
+    --input-text: #2c3e50;
+    --btn-bg: linear-gradient(135deg, #34495e, #2c3e50);
+    --nav-bg: rgba(52, 73, 94, 0.9);
+    --link-color: #2980b9;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    transition: background-color 0.3s ease;
+}
+
+/* ===== خلفيات مختلفة لكل صفحة ===== */
+body.login { background-image: url('images/Login.png'); }
+body.Home { background-image: url('images/home.png'); }
+body.Add { background-image: url('images/Add.png'); }
+body.Edit { background-image: url('images/edit.png'); }
+body.Delete { background-image: url('images/delete.png'); }
+body.Display { background-image: url('images/display.png'); }
+body.Search { background-image: url('images/search.png'); }
+
+/* Overlay for light mode to make text readable on images */
+[data-theme="light"]::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.4);
+    z-index: -1;
+}
+
+/* ===== الصناديق الزجاجية الشفافة ===== */
+body > div:not(.no-card),
+.card,
+.display-box {
+    background: var(--card-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    padding: 30px 25px;
+    width: 100%;
+    text-align: center;
+    transition: all 0.3s ease;
+    color: var(--text-color);
+}
+
+/* ===== العناوين والفقرات ===== */
+h2, h3, p, .empty-message {
+    color: var(--text-color);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+h2 { margin-bottom: 25px; font-size: 28px; font-weight: bold; }
+h3 { margin: 20px 0 15px; font-size: 20px; }
+p { font-size: 0.9rem; }
+
+/* ===== حقول الإدخال ===== */
+.my-input {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 12px;
+    background: var(--input-bg);
+    backdrop-filter: blur(5px);
+    text-align: right;
+    font-size: 15px;
+    color: var(--input-text);
+    transition: all 0.3s ease;
+}
+
+.my-input::placeholder {
+    color: rgba(0, 0, 0, 0.5);
+}
+
+/* ===== الأزرار ===== */
+.btn-submit, .my-btn {
+    width: 100%;
+    background: var(--btn-bg);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 12px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.btn-submit:hover, .my-btn:hover {
+    background: linear-gradient(135deg, #e67e22, #f1c40f);
+    transform: scale(1.02);
+}
+
+/* ===== شريط التنقل ===== */
+nav ul {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    list-style: none;
+    margin-top: 30px;
+}
+
+nav a {
+    background: var(--nav-bg);
+    backdrop-filter: blur(10px);
+    color: white;
+    padding: 12px 25px;
+    border-radius: 40px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    display: inline-block;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* ===== زر تبديل الوضع ===== */
+.theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: var(--nav-bg);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: bold;
+    z-index: 1000;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* ===== الكتب في صفحة العرض ===== */
+.books-grid { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; margin-top: 20px; }
+.book-card { 
+    background: rgba(106, 87, 158, 0.8); 
+    width: 260px; 
+    border-radius: 16px; 
+    padding: 15px; 
+    text-align: center; 
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2); 
+}
+[data-theme="light"] .book-card {
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.book-card img { width: 140px; height: 180px; object-fit: cover; border-radius: 8px; margin-bottom: 10px; }
+.book-actions { display: flex; gap: 10px; justify-content: center; margin-top: 15px; }
+.btn-edit { background: #f39c12; color: white; border:none; padding: 8px; border-radius: 5px; cursor:pointer; flex:1; }
+.btn-delete { background: #e74c3c; color: white; border:none; padding: 8px; border-radius: 5px; cursor:pointer; flex:1; }
+
+.back-link { 
+    display: inline-block; 
+    margin-top: 30px; 
+    padding: 10px 20px; 
+    background: #2c3e50; 
+    color: white; 
+    border-radius: 30px; 
+    text-decoration: none; 
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    body > div, .display-box { padding: 20px 15px; }
+    h2 { font-size: 22px; }
+}
