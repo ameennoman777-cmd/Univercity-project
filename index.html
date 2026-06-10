@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="style.css">
+<script src="theme.js"></script></head>
+<body class="login">
+    <div>
+        <h2>Login to Library</h2>
+        <form onsubmit="event.preventDefault(); handleLogin();">
+            <input type="text" id="loginUsername" class="my-input" placeholder="Username" required>
+            <input type="password" id="loginPassword" class="my-input" placeholder="Password" required>
+            <input type="submit" value="Login" class="btn-submit">
+        </form>
+        
+        <div>
+            <p >Don't have an account? 
+                <a href="LoginUP.html" >Create New Account</a>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        function handleLogin() {
+            let userIn = document.getElementById('loginUsername').value.trim();
+            let passIn = document.getElementById('loginPassword').value;
+
+            // جلب بيانات المستخدم المسجل من الـ localStorage
+            let loginUser = JSON.parse(localStorage.getItem('libraryUser'));
+
+            if (loginUser) {
+                // التحقق من تطابق اسم المستخدم وكلمة المرور
+                if (userIn === loginUser.username && passIn === loginUser.password) {
+                    alert("Login Successful! Welcome " + loginUser.fullName);
+                    window.location.href = "Home.html"; // الانتقال للصفحة الرئيسية
+                } else {
+                    alert("Incorrect username or password!");
+                }
+            } else {
+                // في حال لم يتم إنشاء أي حساب بعد في المتصفح
+                alert("No account found! Please sing up first.");
+            }
+        }
+    </script>
+</body>
+</html>
