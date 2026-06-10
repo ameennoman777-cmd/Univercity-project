@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create New Account</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="theme.js"></script>
+    <script src="script.js"></script>
+</head>
+<body class="login">
+    <div>
+        <h2>Create New Account</h2>
+        <form onsubmit="event.preventDefault(); handleSignUp();">
+            <input type="text" id="Username" class="my-input" placeholder="Username (Used for Login)" required>
+            <input type="text" id="FullName" class="my-input" placeholder="Full Name" required>
+            <input type="email" id="Email" class="my-input" placeholder="Email Address" required>
+            <input type="password" id="Password" class="my-input" placeholder="Password" required>
+            <input type="submit" value="Sign Up Now" class="btn-submit">
+        </form>
+        
+        <div>
+            <a href="index.html">Back to Login</a>
+        </div>
+    </div>
+</body>
+</html>
