@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Book</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="theme.js"></script>
+    <script src="script.js"></script>
+</head>
+<body class="Edit">
+<div class="display-box" style="max-width: 550px; margin: 40px auto;">
+    <div>
+        <h2>Edit Book</h2>
+        <label>Select Book:</label>
+        <select id="bookSelect" class="my-input" onchange="loadBookData()">
+            <option value="">-- Choose a book --</option>
+        </select>
+        <form onsubmit="event.preventDefault(); updateBook();">
+            <input type="text" id="editTitle" class="my-input" placeholder="Book Name" required>
+            <input type="text" id="editAuthor" class="my-input" placeholder="Author Name" required>
+            <div class="radio-group">
+                <label><input type="radio" name="editType" value="Scientific"> Scientific</label>
+                <label><input type="radio" name="editType" value="Literary"> Literary</label>
+            </div>
+            <input type="text" id="editProfessor" class="my-input" placeholder="Professor Name" required>
+            <input type="file" id="editImage" accept="image/*" class="my-input">
+            <img id="editPreview" class="preview-img" src="" alt="Current Image">
+            <button type="submit" class="btn-submit">Update Book</button>
+        </form>
+        <div id="updatedMessage" class="updated-card"></div>
+        <a href="Home.html" class="back-link">Back to Home</a>
+    </div>
+</div>
+</body>
+</html>
